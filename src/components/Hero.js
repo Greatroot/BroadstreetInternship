@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from "styled-components";
 import {Button} from "./Button";
+import Video from '../assets/videos/pexels-gotta-be-worth-it-1029115.jpg';
 
 // This is not made to be reusable since we only have one hero and the rest of the page is covered with cards.
 // Reuse could be applicable when it comes to having multiple pages???
@@ -8,7 +9,7 @@ const Hero = () => {
     return (
         <HeroContainer>
             <HeroBg>
-                <VideoBg src="" type="video/mp4" />
+                <VideoBg src={ Video } type="video/mp4" />
             </HeroBg>
             <HeroContent>
                 <HeroItems>
