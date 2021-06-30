@@ -1,0 +1,26 @@
+[
+  {
+    "img": "../assets/images/travel-1.jpg",
+    "alt": "Man walking on a desert",
+    "name": "Desert",
+    "button": "View Destination"
+  },
+  {
+    "img": "../assets/images/travel-2.jpg",
+    "alt": "Breathtaking seascape with amazing coastal village on cliff",
+    "name": "Coastal Night Time",
+    "button": "View Destination"
+  },
+  {
+    "img": "../assets/images/travel-3.jpg",
+    "alt": "Gorgeous coastal village",
+    "name": "Coastal Day Time",
+    "button": "View Destination"
+  },
+  {
+    "img": "../assets/images/travel-4.jpg",
+    "alt": "Aerial View of City Buildings",
+    "name": "City",
+    "button": "View Destination"
+  }
+]
