@@ -1,9 +1,9 @@
 
 import * as React from "react"
 
-import OldHeader from "./OldHeader"
 import {GlobalStyle} from "./styles/GlobalStyles";
-import OldFooter from "./OldFooter";
+import Header from "./Header/Header";
+import Footer from "./Footer/Footer";
 
 // A smart place to put components used on all pages like the OldHeader and OldFooter.
 const Layout = ({ children }) => {
@@ -11,9 +11,9 @@ const Layout = ({ children }) => {
   return (
     <>
         <GlobalStyle />
-        <OldHeader />
+        <Header />
         <main>{children}</main>
-        <OldFooter />
+        <Footer />
     </>
   )
 }
