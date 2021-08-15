@@ -9,12 +9,12 @@ import Email from "../components/Email";
 
 const IndexPage = () => (
   <Layout>
-      {/*<Seo title="Home" />*/}
-      {/*<Hero />*/}
-      {/*<Trips heading="Our Favorite Destinations"/>*/}
-      {/*<Testimonials />*/}
-      {/*<Stats />*/}
-      {/*<Email />*/}
+      <Seo title="Home" />
+      <Hero />
+      <Trips heading="Our Favorite Destinations"/>
+      <Testimonials />
+      <Stats />
+      <Email />
   </Layout>
 )
 
