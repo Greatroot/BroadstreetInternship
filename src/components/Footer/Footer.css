@@ -4,7 +4,7 @@
 
     margin-top: 4rem;
     width: 100%;
-    height: 200px;
+    height: 300px;
     box-shadow: 0px 0px 25px rgb(207, 207, 207);
     color: #989898;
     background: #F4F4F4;
@@ -16,15 +16,19 @@
 .left-right-footer {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-between;
+    height: 180px;
+    line-height: 1.4;
 }
 
 .left-footer {
-
+    display: flex;
+    justify-content: center;
+    text-align: center;
 }
 
 .broadstreet-logo {
-
+    height: 60px;
 }
 
 .left-footer--text {
@@ -36,11 +40,17 @@
 }
 
 .email {
+    display: flex;
+}
 
+.email > p {
+    margin: 0 0.15rem;
 }
 
 .right-footer {
-
+    display: flex;
+    justify-content: center;
+    text-align: center;
 }
 
 .right-footer--text {
@@ -48,9 +58,150 @@
 }
 
 .bottom-footer {
-
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .icons {
+    display: flex;
+    justify-content: space-around;
+    width: 12rem;
 
+    padding-top: 1.5rem;
+    /*padding: 2rem 25% 0 25%;*/
 }
+
+.icon {
+    height: 2rem;
+    width: 1.5rem;
+    color: #008FAA;
+    font-weight: bold;
+}
+
+.link {
+    color: #008FAA;
+    font-weight: bold;
+}
+
+/* LAPTOP */
+@media (min-width: 768px) {
+    .left-right-footer {
+        justify-content: space-around;
+    }
+
+    .left-footer--text {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        margin-left: 0.3rem;
+    }
+
+    .top-text {
+        display: flex;
+        justify-content: space-around;
+    }
+
+    .email {
+        justify-content: flex-start;
+    }
+}
+
+/* MONITORS */
+@media (min-width: 1280px) {
+    .footer {
+        height: 13rem;
+    }
+
+    .left-right-footer {
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    .left-footer {
+        margin-right: 3rem;
+    }
+
+    .right-footer--text {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+}
+
+
+
+
+/*.footer {*/
+/*    display: flex;*/
+/*    flex-display: column;*/
+
+/*    margin-top: 4rem;*/
+/*    width: 100%;*/
+/*    height: 300px;*/
+/*    box-shadow: 0px 0px 25px rgb(207, 207, 207);*/
+/*    color: #989898;*/
+/*    background: #F4F4F4;*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    padding: 20px 10px;*/
+/*}*/
+
+/*.left-right-footer {*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    justify-content: space-between;*/
+/*    height: 180px;*/
+/*}*/
+
+/*.left-footer {*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    justify-content: center;*/
+/*    text-align: center;*/
+/*    line-height: 1.4;*/
+/*}*/
+
+/*.broadstreet-logo {*/
+
+/*}*/
+
+/*.left-footer--text {*/
+
+/*}*/
+
+/*.top-text {*/
+/*    display: flex;*/
+/*}*/
+
+/*.bottom-text {*/
+
+/*}*/
+
+/*.email {*/
+/*    display: flex;*/
+/*    justify-content: space-around;*/
+/*}*/
+
+/*.right-footer {*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*}*/
+
+/*.right-footer--text {*/
+
+/*}*/
+
+/*.bottom-footer {*/
+
+/*}*/
+
+/*.icons {*/
+
+/*}*/
+
+/*.link {*/
+/*    color: #008FAA;*/
+/*    font-weight: bold;*/
+/*}*/
