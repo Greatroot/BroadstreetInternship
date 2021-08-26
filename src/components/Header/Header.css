@@ -1,0 +1,22 @@
+.header {
+    height: 40%;
+}
+
+.header-top {
+    display: flex;
+    justify-content: center;
+
+    margin: 0 2rem;
+}
+
+.title {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+
+    margin-top: 3.5rem;
+}
+
+.img {
+    width: 100%;
+}
