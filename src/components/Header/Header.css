@@ -1,12 +1,45 @@
 .header {
-    height: 40%;
+    height: max(40vh, 260px); /* TODO: Figure out why the height isn't responding to this attribute */
+    background-color: #F4F4F4;
+    padding: 0.1rem;
+
+}
+
+.header-top-bottom {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
 .header-top {
     display: flex;
+    flex-direction: column;
     justify-content: center;
 
     margin: 0 2rem;
+    transition: all 0.5s ease;
+}
+
+.header-bottom {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+
+    height: 60%
+}
+
+.ham-icon--container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 3.7vh;
+    padding: 1.5rem 0 1rem 0;
+    height: 4rem;
+}
+
+.ham-icon {
+    width: 2.6rem;
+    height: 2.6rem;
+    align-self: center;
 }
 
 .title {
@@ -14,9 +47,86 @@
     justify-content: center;
     align-content: center;
 
-    margin-top: 3.5rem;
+    margin-top: 10vh;
 }
 
 .img {
+    width: max(50vw, 25rem);
+}
+
+.popup-menu {
+    display: flex;
+    flex-direction: column;
+
+    background-color: #ffffff;
     width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0px; /* This pulls the popup menu to the top of the page */
+    left: -100%;
+    opacity: 1;
+    transition: all 0.5s ease;
+}
+
+.popup-menu.active {
+    left: 0;
+    opacity: 1;
+    transition: all 0.6s ease;
+    z-index: 1;
+}
+
+.ham-menu--exit {
+    display: flex;
+    justify-content: flex-end;
+
+    height: 3rem;
+}
+
+.exit-icon {
+    height: 2.6rem;
+    width: 2.6rem;
+
+    margin: 0.8rem 1.2rem 0 0;
+}
+
+.ham-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    list-style: none;
+    text-align: center;
+
+    justify-content: center;
+}
+
+.ham-item {
+    margin-top: 2.6rem;
+}
+
+.ham-links {
+    text-decoration: none;
+    color: #008FAA;
+    font-family: "Open Sans";
+}
+
+/* LAPTOP */
+@media (min-width: 768px) {
+    /*.img {*/
+    /*    width: 50vw;*/
+    /*}*/
+}
+
+@media (min-width: 960px) {
+
+}
+
+/* MONITORS */
+@media (min-width: 1200px) {
+    .ham-menu {
+        flex-direction: row;
+        justify-content: space-around;
+        margin: 1rem 15rem;
+    }
+
 }

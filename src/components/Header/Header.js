@@ -5,7 +5,7 @@
 import React, {useEffect, useState} from "react";
 import {Link} from "gatsby";
 import './Header.css';
-import title from '../../assets/images/Title.svg';
+import title from '../../assets/images/Full_Title.svg';
 import { FaBars, FaTimes } from 'react-icons/fa';
 
 const Header = () => {
@@ -18,7 +18,7 @@ const Header = () => {
                                             // is open, then the hamburger menu will close.
 
     const showButton = () => {
-        if(window.innerWidth <= 960 ) {
+        if(window.innerWidth <= 1200 ) {
             setButton(true);
         } else {
             setButton(false);
@@ -38,54 +38,98 @@ const Header = () => {
     // ham = hamburger
     return(
         <div className="header">
-            <div className="header-top">
-                <div className="ham-menu--exit">
-                    { click ? <FaTimes /> : null }
-                </div>
-                <div className="title">
-                    <img src={title} alt="Logo" className="img"/>
-                </div>
-            </div>
-            <div className="header-bottom">
-                {button ? (
-                    <>
-                        <div className='ham-icon'>
-                            {click ? null : <FaBars />}
-                        </div>
-                        <ul className={click ? 'ham-menu active' : 'hamburger-menu' }>
-                            <li className='ham-item'>
-                                <Link to="/" className='ham-links' onClick={closeMobileMenu}>
-                                    Home
-                                </Link>
-                            </li>
-                            <li className='ham-item'>
-                                <Link to="/gallery" className='ham-links' onClick={closeMobileMenu}>
-                                    Map Gallery
-                                </Link>
-                            </li>
-                            <li className='ham-item'>
-                                <Link to="/projects" className='ham-links' onClick={closeMobileMenu}>
-                                    Special Interest Projects
-                                </Link>
-                            </li>
-                            <li className='ham-item'>
-                                <Link to="/about" className='ham-links' onClick={closeMobileMenu}>
-                                    About Us
-                                </Link>
-                            </li>
-                            <li className='ham-item'>
-                                <Link to="/data" className='ham-links' onClick={closeMobileMenu}>
-                                    Download Data
-                                </Link>
-                            </li>
-                        </ul>
-                    </>
-                ) : (
-                    <>
+            {/* { click ?  If the hamburger icon is clicked on, the broadstreet logo and title will disappear */ }
+            {/*        null*/}
+            {/*    :  Otherwise, if the hamburger menu is closed, then the broadstreet logo and title will be present */}
+            {/*    (*/}
 
-                    </>
-                    )}
+            {/*    )*/}
+            {/*}*/}
+            <div className='header-top-bottom'>
+                <div className="header-top">
+                    {/*{ click ? (*/}
+                    {/*    */}
+                    {/*) : null }*/}
+                    <div className="title">
+                        <img src={title} alt="Logo" className="img"/>
+                    </div>
+                </div>
+                <div className="header-bottom">
+                    {button ? ( /* If in mobile mode, then the hamburger icon should be visible */
+                            <div className='ham-icon--container' onClick={handleClick}>
+                            {click ? null : <FaBars className='ham-icon'/>}
+                            </div>
+                        ) :
+                        null
+                    }
+                </div>
             </div>
+           {button ? (
+               <div className={click ? 'popup-menu active' : 'popup-menu' }>
+                   <div className='ham-menu--exit' onClick={ handleClick }>
+                       <FaTimes className='exit-icon'/>
+                   </div>
+                   {/*<div className="ham-menu--container">  */}
+                       <ul className='ham-menu'>
+                           <li className='ham-item'>
+                               <Link to="/" className='ham-links' onClick={closeMobileMenu}>
+                                   Home
+                               </Link>
+                           </li>
+                           <li className='ham-item'>
+                               <Link to="/gallery" className='ham-links' onClick={closeMobileMenu}>
+                                   Map Gallery
+                               </Link>
+                           </li>
+                           <li className='ham-item'>
+                               <Link to="/projects" className='ham-links' onClick={closeMobileMenu}>
+                                   Special Interest Projects
+                               </Link>
+                           </li>
+                           <li className='ham-item'>
+                               <Link to="/about" className='ham-links' onClick={closeMobileMenu}>
+                                   About Us
+                               </Link>
+                           </li>
+                           <li className='ham-item'>
+                               <Link to="/data" className='ham-links' onClick={closeMobileMenu}>
+                                   Download Data
+                               </Link>
+                           </li>
+                       </ul>
+                   {/*</div>*/}
+               </div>
+           ) : (
+               <>
+                   <ul className='ham-menu'>
+                       <li className='ham-item'>
+                           <Link to="/" className='ham-links' onClick={closeMobileMenu}>
+                               Home
+                           </Link>
+                       </li>
+                       <li className='ham-item'>
+                           <Link to="/gallery" className='ham-links' onClick={closeMobileMenu}>
+                               Map Gallery
+                           </Link>
+                       </li>
+                       <li className='ham-item'>
+                           <Link to="/projects" className='ham-links' onClick={closeMobileMenu}>
+                               Special Interest Projects
+                           </Link>
+                       </li>
+                       <li className='ham-item'>
+                           <Link to="/about" className='ham-links' onClick={closeMobileMenu}>
+                               About Us
+                           </Link>
+                       </li>
+                       <li className='ham-item'>
+                           <Link to="/data" className='ham-links' onClick={closeMobileMenu}>
+                               Download Data
+                           </Link>
+                       </li>
+                   </ul>
+               </>
+           )}
         </div>
     );
 };
