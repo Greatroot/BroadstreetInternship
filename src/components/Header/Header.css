@@ -1,5 +1,6 @@
 .header {
-    height: max(40vh, 260px); /* TODO: Figure out why the height isn't responding to this attribute */
+    /*height: max(56vh, 500px); !* TODO: Figure out why the height isn't responding to this attribute *!*/
+    height: 60vh;
     background-color: #F4F4F4;
     padding: 0.1rem;
 
@@ -126,7 +127,20 @@
     .ham-menu {
         flex-direction: row;
         justify-content: space-around;
-        margin: 1rem 15rem;
+        margin: 4rem 18rem;
+
+        height: 10vh;
     }
 
+    .ham-item {
+        display: flex;
+    }
+
+    .ham-links {
+
+    }
+
+    .header-top-bottom {
+            /*height: 60%;*/
+    }
 }
