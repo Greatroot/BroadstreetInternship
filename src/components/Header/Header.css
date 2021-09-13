@@ -1,6 +1,6 @@
 .header {
     /*height: max(56vh, 500px); !* TODO: Figure out why the height isn't responding to this attribute *!*/
-    height: 60vh;
+    height: 50vh;
     background-color: #F4F4F4;
     padding: 0.1rem;
 

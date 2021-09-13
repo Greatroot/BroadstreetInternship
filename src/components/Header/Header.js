@@ -85,7 +85,7 @@ const Header = () => {
                                 </Link>
                             </li>
                             <li className='ham-item'>
-                                <Link to="/gallery" className='ham-links' onClick={closeMobileMenu}>
+                                <Link to="/map_gallery" className='ham-links' onClick={closeMobileMenu}>
                                     Map Gallery
                                 </Link>
                             </li>

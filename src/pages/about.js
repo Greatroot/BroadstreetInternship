@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useState, useEffect, useRef} from "react";
 import Layout from "../components/layout";
 import styled from "styled-components";
+import axios from "axios";
+import Airtable from 'airtable';
+import {render} from "react-dom";
 // import Seo from "../components/seo"
 // import Hero from "../components/Hero";
 // import Trips from "../components/Trips";
@@ -9,6 +12,55 @@ import styled from "styled-components";
 // import Email from "../components/Email";
 
 const IndexPage = () => {
+    const [teamRoster, setTeamRoster] = useState([]);
+    const base = new Airtable({ apiKey: 'keyQxHIDEz8hhTfXN'}).base('appmOImYFLwfBF9qj');
+    const firstUpdate = useRef(true); // True if component hasn't mounted yet, false if it already has.
+    // Being used so that we can have the useEffect hook do 2 different things based
+    // on whether it has run for the first time or sometime after.
+
+    useEffect(() => {
+        if(firstUpdate.current)
+        {
+            const table_name = "Team Members List"
+            base("Team Members List")
+                .select({ view: "Grid view"})
+                .eachPage((records, fetchNextPage) => {
+                    console.log(records);
+                    setTeamRoster(teamRoster.concat(records));
+                    fetchNextPage();
+                });
+        }
+    }, []);
+
+    // renders the entire team member view.
+    const renderRoster = () => {
+        if(teamRoster !== undefined)
+        {
+            return teamRoster.map((member) => {
+                return (
+                    <MemberCard className="member-card" key={member.fields.id}>
+                        <ProfilePic className='profile-pic'>
+                            <img src={member.fields.picture[0].thumbnails.large.url} />
+                        </ProfilePic>
+                        <ProfileInfo className="profile-info">
+                            <Name className='name'>
+                                <h4>{member.fields.name}</h4>
+                            </Name>
+                            <Resume className='resume'>
+                                <p>RESUME / CV</p>
+                                <p>{member.fields.resume_cv}</p>
+                            </Resume>
+                            <School className='school'>
+                                <p>SCHOOL LINKED</p>
+                                <p>{member.fields.school_linked}</p>
+                            </School>
+                        </ProfileInfo>
+                    </MemberCard>
+                );
+            });
+        }
+    };
+
 
     return (
     <Layout>
@@ -51,6 +103,9 @@ const IndexPage = () => {
                     </BeliefsList>
                 </Beliefs>
             </Paragraphs>
+            <TeamGrid>
+                {renderRoster()}
+            </TeamGrid>
         </Container>
     </Layout>
     )
@@ -59,13 +114,17 @@ const IndexPage = () => {
 export default IndexPage;
 
 const Container = styled.div`
-
+  display: flex;
+  flex-direction: column;
 `
 
 const Paragraphs = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 2rem 21rem;
+  align-self: center;
+  width: 40vw;
+  //margin: 2rem 21rem;
+  margin: 2rem 0; 
 `
 
 //TODO: Need to fix up how the text gets shrunk/squished
@@ -95,4 +154,53 @@ const BeliefsList = styled.ol`
 
 const BeliefsItem = styled.li`
   
+`
+
+const TeamGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 1.5em;
+  padding: 3rem;
+`
+
+const MemberCard = styled.div`
+  display: flex;
+  flex-direction: column;
+  border: 2px solid #e3e3e3;
+  border-radius: 5px;
+  
+  height: 25rem;
+  width: 15rem;
+  
+  //justify-content: space-evenly;
+
+`
+
+const ProfilePic = styled.div`
+  flex: 0;
+  max-width: 100%;
+  
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+`
+
+const ProfileInfo = styled.div`
+  flex: 0;
+  max-width: 100%;
+
+
+`
+
+const Name = styled.div`
+
+`
+
+const Resume = styled.div`
+
+`
+
+const School = styled.div`
+
 `
