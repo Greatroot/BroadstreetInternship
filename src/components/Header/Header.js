@@ -104,6 +104,11 @@ const Header = () => {
                                     Download Data
                                 </Link>
                             </li>
+                            <li className='ham-item'>
+                                <Link to="/blogs" className='ham-links' onClick={closeMobileMenu}>
+                                    Blogs
+                                </Link>
+                            </li>
                         </ul>
                         {/*</div>*/}
                     </div>
@@ -133,6 +138,11 @@ const Header = () => {
                             <li className='ham-item'>
                                 <Link to="/data" className='ham-links' onClick={closeMobileMenu}>
                                     Download Data
+                                </Link>
+                            </li>
+                            <li className='ham-item'>
+                                <Link to="/blogs" className='ham-links' onClick={closeMobileMenu}>
+                                    Blogs
                                 </Link>
                             </li>
                         </ul>
