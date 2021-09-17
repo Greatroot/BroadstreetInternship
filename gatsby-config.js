@@ -1,13 +1,36 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Travel Website`,
-    description: `Travel website showcasing the best travel destinations and deals online.`,
-    author: `@gatsbyjs`,
+    title: `Broadstreet Institute`,
+    description: `The official website of the Broadstreet Institute Internship.`,
+    author: `Ben Kosa`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-image`,
     `gatsby-plugin-styled-components`,
+    `gatsby-transformer-remark`,
+    {
+      resolve: `gatsby-source-airtable`,
+      options: {
+        apiKey: `keyQxHIDEz8hhTfXN`, // may instead specify via env, see below
+        tables: [
+          {
+            baseId: `apppvRBO7pkSdMPOH`,
+            tableName: `Sections`,
+            tableView: `All`,
+            mapping: { 'Body': `text/markdown` },
+            tableLinks: [`Pages`],
+          },
+          {
+            baseId: `apppvRBO7pkSdMPOH`,
+            tableName: `Pages`,
+            tableView: `All`,
+            mapping: { 'Body': `text/markdown` },
+            tableLinks: [`Sections`],
+          },
+        ]
+      }
+    },
     {
       resolve: `gatsby-source-filesystem`,
       options: {

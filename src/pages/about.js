@@ -38,19 +38,19 @@ const IndexPage = () => {
         {
             return teamRoster.map((member) => {
                 return (
-                    <MemberCard className="member-card" key={member.fields.id}>
-                        <ProfilePic className='profile-pic'>
+                    <MemberCard key={member.fields.id}>
+                        <ProfilePic>
                             <img src={member.fields.picture[0].thumbnails.large.url} />
                         </ProfilePic>
-                        <ProfileInfo className="profile-info">
-                            <Name className='name'>
+                        <ProfileInfo>
+                            <Name>
                                 <h4>{member.fields.name}</h4>
                             </Name>
-                            <Resume className='resume'>
+                            <Resume>
                                 <p>RESUME / CV</p>
                                 <p>{member.fields.resume_cv}</p>
                             </Resume>
-                            <School className='school'>
+                            <School>
                                 <p>SCHOOL LINKED</p>
                                 <p>{member.fields.school_linked}</p>
                             </School>
@@ -166,7 +166,7 @@ const TeamGrid = styled.div`
 const MemberCard = styled.div`
   display: flex;
   flex-direction: column;
-  border: 2px solid #e3e3e3;
+  border: 2px solid ;
   border-radius: 5px;
   
   height: 25rem;
