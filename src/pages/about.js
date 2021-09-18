@@ -4,6 +4,7 @@ import styled from "styled-components";
 import axios from "axios";
 import Airtable from 'airtable';
 import {render} from "react-dom";
+import SearchBar from "../components/SearchBar/SearchBar";
 // import Seo from "../components/seo"
 // import Hero from "../components/Hero";
 // import Trips from "../components/Trips";
@@ -13,7 +14,9 @@ import {render} from "react-dom";
 
 const IndexPage = () => {
     const [teamRoster, setTeamRoster] = useState([]);
+    const [filteredRoster, setFilteredRoster] = useState([]);
     const base = new Airtable({ apiKey: 'keyQxHIDEz8hhTfXN'}).base('appmOImYFLwfBF9qj');
+    const [ input, setInput ] = useState(""); // The input the user types in.
     const firstUpdate = useRef(true); // True if component hasn't mounted yet, false if it already has.
     // Being used so that we can have the useEffect hook do 2 different things based
     // on whether it has run for the first time or sometime after.
@@ -21,22 +24,50 @@ const IndexPage = () => {
     useEffect(() => {
         if(firstUpdate.current)
         {
+            firstUpdate.current = false;
             const table_name = "Team Members List"
             base("Team Members List")
                 .select({ view: "Grid view"})
                 .eachPage((records, fetchNextPage) => {
                     console.log(records);
-                    setTeamRoster(teamRoster.concat(records));
+                    // console.log(teamRoster.concat(records));
+                    // console.log(filteredRoster.concat(records));
+                    setTeamRoster(teamRoster => teamRoster.concat(records));
+                    setFilteredRoster(filteredRoster => filteredRoster.concat(records));
                     fetchNextPage();
                 });
         }
     }, []);
 
+    // For when the input field updates (so when the user enters a keystroke into the searchbar).
+    useEffect(() => {
+        const eventObj = { target: { value: input } };
+        console.log(`eventObj.target.value = ${eventObj.target.value}`)
+        searchResults(eventObj);
+    }, [input]);
+
+    const searchResults = (event) => {
+        const searchTerm = event.target.value;
+        console.log(`searchTerm: ${ searchTerm }`)
+        console.log(teamRoster);
+        const newFilter = teamRoster.filter((intern) => {
+            //TODO: Could cause problems later if someone doesn't have a name.
+            if(intern.fields.school_linked) {
+                return intern.fields.name.includes(searchTerm) ||
+                    intern.fields.school_linked.includes(searchTerm);
+            } else {
+                return intern.fields.name.includes(searchTerm);
+            }
+        });
+        setFilteredRoster(newFilter);
+        console.log(`filteredResults: ${filteredRoster}`)
+    }
+
     // renders the entire team member view.
     const renderRoster = () => {
-        if(teamRoster !== undefined)
+        if(filteredRoster !== undefined)
         {
-            return teamRoster.map((member) => {
+            return filteredRoster.map((member) => {
                 return (
                     <MemberCard key={member.fields.id}>
                         <ProfilePic>
@@ -61,6 +92,12 @@ const IndexPage = () => {
         }
     };
 
+    // TODO: Currently runs every single keystroke. Make it so there is a delay before running setInput().
+    const handleUserTyping = (event) => {
+        setInput(event.target.value);
+        // // getReviews(); Should it only get reviews every page refresh or more frequently than that?
+        // searchResults(event);
+    };
 
     return (
     <Layout>
@@ -103,6 +140,12 @@ const IndexPage = () => {
                     </BeliefsList>
                 </Beliefs>
             </Paragraphs>
+            <SearchBar type = "text"
+                       placeholder = "Search for an intern's name or university"
+                       name = "internSearch"
+                       value = { input }
+                       onChange = { handleUserTyping }
+            />
             <TeamGrid>
                 {renderRoster()}
             </TeamGrid>
